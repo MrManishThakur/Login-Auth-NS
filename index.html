@@ -7,12 +7,13 @@
     <title>Login</title>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/login.js"></script>
+    <script defer src="./js/signup.js"></script>
 </head>
 <body class="login">
     <div class="container">
-        <h2 class="form-heading">Login</h2>
-        <br>
-        <form action="dashboard.html" class="loginForm">
+        <form action="dashboard.html" class="form" id="loginForm">
+            <h2 class="form-heading">Login</h2>
+            <br>
             <div class="form-input-group">
                 <label for="username" class="label">Username</label>
                 <input type="text" id="username" class="input" placeholder="username or email">
@@ -26,6 +27,45 @@
             </div>
             <br>
             <button class="button" type="submit">Login</button>
+            <p class="form-text">
+                <a href="#" class="form-link">Forgot your password?</a>
+            </p>
+            <p class="form-text">
+                <a href="./" class="form-link" id="link-create-account">Don't have account? Create account</a>
+            </p>
+        </form>
+
+        <form class="form form-hidden" id="create-account">
+            <h2 class="form-heading">SignUp</h2>
+            <br>
+            <div class="form-input-group">
+                <label for="username" class="label">Username</label>
+                <input type="text" id="username" class="input" placeholder="Username">
+                <span class="error-message"></span>
+            </div>
+            <br>
+            <div class="form-input-group">
+                <label for="email" class="label">Email</label>
+                <input type="text" id="email" class="input" placeholder="email address">
+                <span class="error-message"></span>
+            </div>
+            <br>
+            <div class="form-input-group">
+                <label for="password" class="label">Password</label>
+                <input type="text" id="password" class="input" placeholder="password">
+                <span class="error-message"></span>
+            </div>
+            <br>
+            <div class="form-input-group">
+                <label for="con-password" class="label">Confirm password</label>
+                <input type="text" id="con-password" class="input" placeholder="confirm password">
+                <span class="error-message"></span>
+            </div>
+            <br>
+            <button class="button" type="submit">SignUp</button>
+            <p class="form-text">
+                <a href="./" class="form-link" id="link-login">Already have an account? Login</a>
+            </p>
         </form>
     </div>
 </body>

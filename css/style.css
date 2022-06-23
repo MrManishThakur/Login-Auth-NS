@@ -7,6 +7,7 @@
   --color-success-dark: #007E33;
   --background-color: #ffffff;
   --border-radius: 4px;
+  --color-link: #252c6a;
   box-sizing: border-box;
 }
 
@@ -41,6 +42,15 @@ h1, h2 {
   background-color: var(--background-color);
 }
 
+.form-hidden{
+  display: none;
+}
+.form >*:first-child{
+  margin-top: 0;
+}
+.form >*:last-child{
+  margin-bottom: 0;
+}
 .input {
   appearance: none;
   display: block;
@@ -91,4 +101,16 @@ h1, h2 {
 
 .button:active{
   transform: scale(0.98);
+}
+
+.form-text{
+  text-align: center;
+}
+.form-link{
+  color: var(--color-link);
+  text-decoration: none;
+  cursor: pointer;
+}
+.form-link:hover{
+  text-decoration: underline;
 }
