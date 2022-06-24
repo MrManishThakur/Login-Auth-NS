@@ -16,13 +16,13 @@
             <br>
             <div class="form-input-group">
                 <label for="username" class="label">Username</label>
-                <input type="text" id="username" class="input" placeholder="username or email">
+                <input type="text" id="username" class="input" placeholder="Email address or phone number">
                 <span class="error-message"></span>
             </div>
             <br>
             <div class="form-input-group">
                 <label for="password" class="label">Password</label>
-                <input type="password" id="password" class="input" placeholder="password">
+                <input type="password" id="password" class="input" placeholder="Password">
                 <span class="error-message"></span>
             </div>
             <br>
@@ -35,30 +35,36 @@
             </p>
         </form>
 
-        <form class="form form-hidden" id="create-account">
+        <form onsubmit="return validateFormData()" name="form-signup" class="form form-hidden" id="create-account">
             <h2 class="form-heading">SignUp</h2>
             <br>
-            <div class="form-input-group">
-                <label for="username" class="label">Username</label>
-                <input type="text" id="username" class="input" placeholder="Username">
+            <div class="form-input-group" id="error-name">
+                <label for="name" class="label">Name</label>
+                <input type="text" id="name" class="input" placeholder="your name" name="form-name">
                 <span class="error-message"></span>
             </div>
             <br>
-            <div class="form-input-group">
+            <div class="form-input-group" id="error-email">
                 <label for="email" class="label">Email</label>
-                <input type="text" id="email" class="input" placeholder="email address">
+                <input type="text" id="email" class="input" placeholder="email address" name="form-email">
                 <span class="error-message"></span>
             </div>
             <br>
-            <div class="form-input-group">
+            <div class="form-input-group" id="error-phone">
+                <label for="phone" class="label">Phone Number</label>
+                <input type="number" id="phone" class="input" placeholder="phone number" name="form-phone">
+                <span class="error-message"></span>
+            </div>
+            <br>
+            <div class="form-input-group" id="error-pass">
                 <label for="password" class="label">Password</label>
-                <input type="text" id="password" class="input" placeholder="password">
+                <input type="text" id="password" class="input" placeholder="password" name="form-password">
                 <span class="error-message"></span>
             </div>
             <br>
-            <div class="form-input-group">
+            <div class="form-input-group" id="error-cpass">
                 <label for="con-password" class="label">Confirm password</label>
-                <input type="text" id="con-password" class="input" placeholder="confirm password">
+                <input type="text" id="con-password" class="input" placeholder="confirm password" name="form-cpassword">
                 <span class="error-message"></span>
             </div>
             <br>
