@@ -32,8 +32,6 @@ function setError(id, error){
 
 //validation
 function validateFormData(){
-    ClearFormError();
-
     var returnVal = true;    
     var name = document.forms['form-signup']["form-name"].value;
     if(name.length==0){
@@ -83,6 +81,9 @@ function validateFormData(){
         setError("error-cpass", "password doesn't match");
         returnVal = false
     }
+    if(returnVal==true){
+        ClearFormError();
+    }
     return returnVal;
 }
 
@@ -96,10 +97,14 @@ function saveData(){
     
     let user_records = new Array();
     user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
-    if(user_records.some((e)=>{return e.Email==saveEmail})){
-        setError("error-email", "Already have account with this email")
-    }else if(user_records.some((p)=>{return p.Phone==savePhone})){
-        setError("error-phone", "Already have account with this phone")
+    if(saveName.length===0 && saveEmail.length===0 && savePhone.length===0 && savePassword.length===0){
+        alert("Failed to signup");
+    }else if(user_records.some((e)=>{return e.Email===saveEmail && e.Phone===savePhone})){
+        alert("Already have account with this email and phone number");
+    }else if(user_records.some((e)=>{return e.Email===saveEmail})){
+        alert("Already have account with this email");
+    }else if(user_records.some((p)=>{return p.Phone===savePhone})){
+        alert("Already have account with this phone");
     }else{
         user_records.push({
             "Name":saveName,
@@ -108,5 +113,6 @@ function saveData(){
             "Password":savePassword
         })
         localStorage.setItem("users", JSON.stringify(user_records));
+        alert("Registered successfully");
     }
 }
