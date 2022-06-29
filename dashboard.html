@@ -7,12 +7,17 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/auth.js"></script>
-    <script defer src="./js/init.js"></script>
 </head>
 <body>
     <div class="container">
         <h1 class="form-heading">Welcome to the Dashboard</h1>
-        <p class="form-heading"><a href="#" class="logout">Log Out</a></p>
+        <div class="user-data">
+            <h2 class="user-profile">Your Profile</h2>
+            <h4>Name: <script>document.write(localStorage.getItem('Name'));</script></h4>
+            <h4>Email: <script>document.write(localStorage.getItem('Email'));</script></h4>
+
+        </div>
+        <button type="button" onclick="logout()" class="btn">Log Out</button>
     </div>
 </body>
 </html>

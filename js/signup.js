@@ -1,11 +1,11 @@
-//link between login and signup page
+//clear error message
 function ClearFormError(){
     let errors = document.getElementsByClassName("error-message");
     for(let errorItem of errors){
         errorItem.innerHTML = "";
     }
 }
-
+//link between login and signup page
 document.addEventListener("DOMContentLoaded", ()=>{
     const loginForm = document.querySelector("#loginForm");
     const signUp = document.querySelector("#create-account");
@@ -97,9 +97,9 @@ function saveData(){
     let user_records = new Array();
     user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
     if(user_records.some((e)=>{return e.Email==saveEmail})){
-        alert("Already have account with this email or phone")
+        setError("error-email", "Already have account with this email")
     }else if(user_records.some((p)=>{return p.Phone==savePhone})){
-        alert("Already have account with this email or phone")
+        setError("error-phone", "Already have account with this phone")
     }else{
         user_records.push({
             "Name":saveName,
