@@ -32,6 +32,7 @@ function setError(id, error){
 
 //validation
 function validateFormData(){
+    ClearFormError();
     var returnVal = true;    
     var name = document.forms['form-signup']["form-name"].value;
     if(name.length==0){
@@ -94,7 +95,6 @@ function saveData(){
     let savePhone = document.forms['form-signup']["form-phone"].value;
     let savePassword = document.forms['form-signup']["form-password"].value;
 
-    
     let user_records = new Array();
     user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
     if(saveName.length===0 && saveEmail.length===0 && savePhone.length===0 && savePassword.length===0){
