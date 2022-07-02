@@ -29,17 +29,23 @@ function loginPage(){
 	if(user_id.length===0 && password.length===0){
 		setError("error-user", "username cannot be blank");
 		setError("error-password", "password cannot be blank");
+	}else if(user_id.length===0 && password.length!==0){
+		setError("error-user", "username cannot be null");
+	}else if(user_id.length!==0 && password.length===0){
+		setError("error-password", "password cannot be null");
 	}else if(user_records.some((u)=>{return u.Email===user_id && u.Password===password})){
 		alert("Login successfull");
 		let current_user=user_records.filter((v)=>{return v.Email===user_id  && v.Password===password})[0]
 		localStorage.setItem('Name',current_user.Name);
 		localStorage.setItem('Email',current_user.Email);
+		localStorage.setItem('Phone',current_user.Phone);
 		window.location.href="dashboard.html"
     }else if(user_records.some((p)=>{return p.Phone===user_id && p.Password===password})){
 		alert("Login successfull");
 		let current_user=user_records.filter((v)=>{return v.Phone===user_id  && v.Password===password})[0]
 		localStorage.setItem('Name',current_user.Name);
 		localStorage.setItem('Email',current_user.Email);
+		localStorage.setItem('Phone',current_user.Phone);
 		window.location.href="dashboard.html"
 	}else{
 		alert("Invalid username or password");

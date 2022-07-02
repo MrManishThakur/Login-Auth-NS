@@ -83,36 +83,27 @@ function validateFormData(){
         returnVal = false
     }
     if(returnVal==true){
-        ClearFormError();
+        let saveName = document.forms['form-signup']["form-name"].value;
+        let saveEmail = document.forms['form-signup']["form-email"].value;
+        let savePhone = document.forms['form-signup']["form-phone"].value;
+        let savePassword = document.forms['form-signup']["form-password"].value;
+
+        let user_records = new Array();
+        user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
+        if(user_records.some((e)=>{return e.Email===saveEmail})){
+            alert("Already have account with this email");
+        }else if(user_records.some((p)=>{return p.Phone===savePhone})){
+            alert("Already have account with this phone");
+        }else{
+            user_records.push({
+                "Name":saveName,
+                "Email":saveEmail,
+                "Phone":savePhone,
+                "Password":savePassword
+            })
+            localStorage.setItem("users", JSON.stringify(user_records));
+            alert("Registered successfully");
+        }
     }
     return returnVal;
-}
-
-//Store form data in localStorage
-function saveData(){
-    let saveName = document.forms['form-signup']["form-name"].value;
-    let saveEmail = document.forms['form-signup']["form-email"].value;
-    let savePhone = document.forms['form-signup']["form-phone"].value;
-    let savePassword = document.forms['form-signup']["form-password"].value;
-
-    let user_records = new Array();
-    user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
-    if(saveName.length===0 && saveEmail.length===0 && savePhone.length===0 && savePassword.length===0){
-        alert("Failed to signup");
-    }else if(user_records.some((e)=>{return e.Email===saveEmail && e.Phone===savePhone})){
-        alert("Already have account with this email and phone number");
-    }else if(user_records.some((e)=>{return e.Email===saveEmail})){
-        alert("Already have account with this email");
-    }else if(user_records.some((p)=>{return p.Phone===savePhone})){
-        alert("Already have account with this phone");
-    }else{
-        user_records.push({
-            "Name":saveName,
-            "Email":saveEmail,
-            "Phone":savePhone,
-            "Password":savePassword
-        })
-        localStorage.setItem("users", JSON.stringify(user_records));
-        alert("Registered successfully");
-    }
 }
