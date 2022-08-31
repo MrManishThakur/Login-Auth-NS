@@ -1,10 +1,8 @@
 * {
-  --color-primary: #009579;
-  --color-primary-dark: #007f67;
-  --color-secondary: #7abfff;
+  --color-primary: #4CAF50;
+  --color-primary-dark: #3e8e41;
+  --color-secondary: #c0c0c0;
   --color-error: #cc3333;
-  --color-success: #4bb544;
-  --color-success-dark: #007E33;
   --color-white: #ffffff;
   --border-radius: 4px;
   --color-link: #252c6a;
@@ -26,7 +24,6 @@ h1, h2 {
   max-width: 98vw;
   margin: 0 auto;
   padding: 1rem;
-  background-color: var(--color-success);
   border-radius: var(--border-radius);
 }
 
@@ -102,7 +99,7 @@ h1, h2 {
   display: block;
   width: 100%;
   color: #333;
-  border: 1px solid var(--color-success);
+  border: 1px solid var(--color-primary);
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: 0.25rem;
@@ -118,7 +115,7 @@ h1, h2 {
 
 .input:focus {
   outline: none;
-  border: 1px solid var(--color-success-dark);
+  border: 1px solid var(--color-primary-dark);
   background-clip: padding-box;
 }
 
