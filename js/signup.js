@@ -45,20 +45,47 @@ function validateFormData(){
     
 
     var email = document.forms['form-signup']["form-email"].value;
-    if(email.length==0){
+    let emailElmtRegex = new RegExp('[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}');
+    if(email.length===0){
         setError("error-email", "email field cannot be blank");
+        returnVal = false
+    }else if(!emailElmtRegex.test(email)){
+        setError("error-email", "invalid email format");
         returnVal = false
     }else if(email.length>25){
         setError("error-email", "email cannot be greater than 25 character");
         returnVal = false
     }
+    var gender = document.forms['form-signup']['form-gender'].value;
+    if(gender.length===0){
+        setError("error-gender", "please select gender");
+        returnVal = false
+    }
+
+    var countryCode = document.querySelector('#select').value;
+    if(countryCode.length===0){
+        setError("error-phone", "please select country code");
+        returnVal = false
+    }
 
     var phone = document.forms['form-signup']["form-phone"].value;
-    if(phone.length==0){
+    if(phone.length===0){
         setError("error-phone", "phone number field cannot be blank");
         returnVal = false
-    }else if(phone.length > 10 || phone.length < 10){
+    }else if(countryCode==+91 && phone.length!==10){
         setError("error-phone", "phone number must be 10 digits");
+        returnVal = false
+    }else if(countryCode==+977 && phone.length!==10){
+        setError("error-phone", "phone number must be 10 digits");
+        returnVal = false
+    }else if(countryCode==+93 && phone.length!==10){
+        setError("error-phone", "phone number must be 10 digits");
+        returnVal = false
+    }else if(countryCode==+86 && phone.length!==11){
+        setError("error-phone", "phone number must be 11 digits");
+        returnVal = false
+    }else if(countryCode==+975 && phone.length!==8){
+        setError("error-phone", "phone number must be 8 digits");
         returnVal = false
     }
 
@@ -98,7 +125,7 @@ function validateFormData(){
             user_records.push({
                 "Name":saveName,
                 "Email":saveEmail,
-                "Phone":savePhone,
+                "Phone":`${countryCode}-${savePhone}`,
                 "Password":savePassword
             })
             localStorage.setItem("users", JSON.stringify(user_records));

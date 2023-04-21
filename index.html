@@ -46,13 +46,36 @@
             <br>
             <div class="form-input-group" id="error-email">
                 <label for="email" class="label">Email</label>
-                <input type="text" id="email" class="input" placeholder="email address" name="form-email">
+                <input type="text" id="email" class="input" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="email address" name="form-email">
                 <span class="error-message"></span>
+            </div>
+            <br>
+            <div class="form-input-group" id="error-gender">
+                <label class="label">Gender</label><br>
+                <div class="gender">
+                  <input type="radio" class="gender-input" id="male" value="Male" name="form-gender">
+                  <label for="male" class="label">Male</label>
+                  <input type="radio" class="gender-input" id="female" value="Female" name="form-gender">
+                  <label for="female" class="label">Female</label>
+                  <input type="radio" class="gender-input" id="other" value="Transgender" name="form-gender">
+                  <label for="other" class="label">Other</label>
+              </div>
+              <span class="error-message"></span>
             </div>
             <br>
             <div class="form-input-group" id="error-phone">
                 <label for="phone" class="label">Phone Number</label>
-                <input type="number" id="phone" class="input" placeholder="phone number" name="form-phone">
+                <div style="display: flex;">
+                    <select name="" id="select" class="select-country-code">
+                      <option value="">select</option>
+                      <option value="+91" name="India">+91 India</option>
+                      <option value="+93" name="Afghanistan">+93 Afghanistan</option>
+                      <option value="+977" name="Nepal">+977 Nepal</option>
+                      <option value="+86" name="China">+86 China</option>
+                      <option value="+975" name="Bhutan">+975 Bhutan</option>
+                    </select>
+                    <input type="number" id="phone" class="input" placeholder="phone number" name="form-phone">
+                  </div>
                 <span class="error-message"></span>
             </div>
             <br>

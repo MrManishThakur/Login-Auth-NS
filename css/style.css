@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
 * {
-  --color-primary: #4CAF50;
-  --color-primary-dark: #3e8e41;
-  --color-secondary: #c0c0c0;
-  --color-error: #cc3333;
-  --color-white: #ffffff;
+  --color-primary: #008CBA;
+    --color-primary-dark: #00bfff;
+    --color-secondary: #c0c0c0;
+    --color-error: #cc3333;
+    --color-white: #ffffff;
   --border-radius: 4px;
   --color-link: #252c6a;
   box-sizing: border-box;
@@ -49,7 +50,12 @@ h1, h2 {
   border-radius: 50%;
 }
 .form-heading {
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  padding: 0.6rem;
   text-align: center;
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 .btn{
@@ -78,7 +84,7 @@ h1, h2 {
 }
 .login .container {
   max-width: 460px;
-  margin: 3rem auto;
+  margin: 0 auto;
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 0.25rem;
@@ -103,6 +109,24 @@ h1, h2 {
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: 0.25rem;
+}
+.gender{
+  padding: 1rem 0;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.25rem;
+}
+.select-country-code{
+  width: 20%;
+  color: #333;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-white);
+  padding: 1rem 0;
+  border-radius: 0.25rem;
+}
+.select-country-code:focus{
+  outline: none;
+  border: 1px solid var(--color-primary-dark);
+  background-clip: padding-box;
 }
 
 .input.input-error {
@@ -156,4 +180,16 @@ h1, h2 {
 }
 .form-link:hover{
   text-decoration: underline;
+}
+
+
+@media only screen and (max-width: 428px) {
+  .user-data{
+    width: 70vw;
+  }
+  .user-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
