@@ -40,9 +40,10 @@ function loginPage(){
 		localStorage.setItem('Email',current_user.Email);
 		localStorage.setItem('Phone',current_user.Phone);
 		window.location.href="dashboard.html"
-    }else if(user_records.some((p)=>{return p.Phone===user_id && p.Password===password})){
+    }else if(user_records.some((p)=>{return p.Phone.split("-")[1]===user_id && p.Password===password
+	})){
 		alert("Login successfull");
-		let current_user=user_records.filter((v)=>{return v.Phone===user_id  && v.Password===password})[0]
+		let current_user=user_records.filter((v)=>{return v.Phone.split("-")[1]===user_id  && v.Password===password})[0]
 		localStorage.setItem('Name',current_user.Name);
 		localStorage.setItem('Email',current_user.Email);
 		localStorage.setItem('Phone',current_user.Phone);
