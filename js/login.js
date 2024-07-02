@@ -6,7 +6,6 @@ function ClearFormError(){
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    
     document.querySelector("#login").addEventListener("click", e=>{
         e.preventDefault();
     });

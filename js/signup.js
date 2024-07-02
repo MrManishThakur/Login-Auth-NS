@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
         loginForm.classList.remove("form-hidden");
         signUp.classList.add("form-hidden");
     });
+    document.querySelector("#create-account").addEventListener("submit", e => {
+        e.preventDefault();
+    });
 })
 
 //error message function
@@ -115,22 +118,71 @@ function validateFormData(){
         let savePhone = document.forms['form-signup']["form-phone"].value;
         let savePassword = document.forms['form-signup']["form-password"].value;
 
-        let user_records = new Array();
-        user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
-        if(user_records.some((e)=>{return e.Email===saveEmail})){
-            alert("Already have account with this email");
-        }else if(user_records.some((p)=>{return p.Phone===savePhone})){
-            alert("Already have account with this phone");
-        }else{
-            user_records.push({
-                "Name":saveName,
-                "Email":saveEmail,
-                "Phone":`${countryCode}-${savePhone}`,
-                "Password":savePassword
-            })
-            localStorage.setItem("users", JSON.stringify(user_records));
-            alert("Registered successfully");
-        }
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.e30.gEYP8Fd_D5kIQZ287DsuWsVotM-4hJMvzwep7i8HSco");
+
+        const requestOptions = {
+            method: "GET",
+            headers: myHeaders,
+            redirect: "follow"
+        };
+
+        fetch("https://backend-node-api-h4w5.onrender.com/customer/all", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            let phoneExists = false;
+            let emailExists = false;
+            console.log("data", data)
+            data.forEach((customer) => {
+                if (customer.phone === `${countryCode}-${savePhone}`) {
+                    phoneExists = true;
+                }
+                if (customer.email === saveEmail) {
+                    emailExists = true;
+                }
+            });
+
+            if (phoneExists && emailExists) {
+                alert("Already have account with this phone & email");
+                // console.log('Already have account with this phone & email')
+            } else if (phoneExists) {
+                alert("Already have account with this phone");
+                // console.log('Already have account with this phone')
+            } else if (emailExists) {
+                alert("Already have account with this email");
+                // console.log('Already have account with this email')
+            } else {
+                const myHeaders2 = new Headers();
+                myHeaders2.append("Content-Type", "application/json");
+                myHeaders2.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.e30.gEYP8Fd_D5kIQZ287DsuWsVotM-4hJMvzwep7i8HSco");
+
+                const customerData = JSON.stringify({
+                    "name": saveName,
+                    "email": saveEmail,
+                    "phone": `${countryCode}-${savePhone}`,
+                    "password": savePassword
+                });
+
+                const requestOptionsCreate = {
+                    method: "POST",
+                    headers: myHeaders2,
+                    body: customerData,
+                    redirect: "follow"
+                };
+
+                fetch("https://backend-node-api-h4w5.onrender.com/customer/create", requestOptionsCreate)
+                .then((response) => response.text())
+                .then((result) => console.log('Registered successfully'))
+                .catch((error) => console.error(error));
+                alert("Registered successfully");
+            }
+        })
+        .catch((error) => console.error('Error:', error));
     }
     return returnVal;
 }
